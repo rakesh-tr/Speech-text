@@ -3,7 +3,7 @@
   "name": "Speech-text",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "speech_recognition.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
