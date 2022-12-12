@@ -6,6 +6,9 @@
 trigger:
 - master
 
+variables:
+  buildZipFile: 'test'
+
 pool:
   vmImage: ubuntu-latest
 
@@ -19,3 +22,19 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+
+- task: ArchiveFiles@2
+  displayName: 'ArchiveFiles to $(buildZipFile).zip file'
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(buildZipFile).zip'
+    replaceExistingArchive: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Build Artifacts'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
