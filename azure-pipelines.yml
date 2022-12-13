@@ -26,7 +26,7 @@ steps:
 - task: richardfennellBM.BM-VSTS-XplatGenerateReleaseNotes.XplatGenerate-Release-Notes.XplatGenerateReleaseNotes@3
   displayName: 'Generate Release Notes based on Release Comparison API'
   inputs:
-    outputfile: '**/releasenotes.md'
+    outputfile: $(Build.ArtifactStagingDirectory)\releasenotes.md'
     templateLocation: InLine
     inlinetemplate: |
      ## Build {{buildDetails.buildNumber}}
